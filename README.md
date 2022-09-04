@@ -1,4 +1,4 @@
-# dart-stun-quick-client
+# dart_stun_quick_client
 
 Usage:
  - dart run
@@ -11,4 +11,4 @@ Output example:
 
 See:
  - bin/dart_stun_quick_client.dart to example,
- - lib/StunManager.dart to code.
+ - lib/stun_client.dart to code.

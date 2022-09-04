@@ -4,6 +4,7 @@ import 'dart:math';
 import 'dart:typed_data';
 class StunClient{
   bool debug = false;
+  bool inited = false;
   static const Duration timeout = Duration(seconds: 3);
   static const int MappedAddress = 0x01;
   static const int ResponseAddress = 0x02;
@@ -35,6 +36,9 @@ class StunClient{
   StunRequest? lastReceived; 
 
   Future<StunRequest?> init() async{
+    if(inited) {
+      return lastReceived;
+    }
     try {
       _changeServerRandom();
       socket = await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0);
@@ -66,8 +70,8 @@ class StunClient{
           throw ArgumentError('Not internet');
         }
       }
+      inited = true;
       return stunTest;
-
     }catch(err){
       print(err);
     }
